@@ -7,104 +7,124 @@
 ********************************************************************************
 * 0. Pasos previos para juntar las bases de datos: Notificación y SISCOVID
 
-* Definir el directorio de trabajo actual
 
-*global path "/Users/bran/Documents/GitHub/dashboard-covid-19/data"
-global path "D:/Documents/GitHub/dashboard-covid-geresa/data"
-	global main "$path"
-	global maindata "$path/maindata"
-set more off, permanent
+   * Usuarios
+   * -----------
 
+   *Número de usuario:
+   * Brandon Oficina GORE		1
+   * Brandon Casa				2
+
+   *Establecer este valor para el usuario que actualmente usa el script
+   global user  1
+
+	
+   * Definir Globales
+   * ---------------------
+
+   if $user == 1 {
+       global path "D:/Documents/GitHub/dashboard-covid-geresa/data"
+   }
+
+   if $user == 2 {
+       global path "/Users/bran/Documents/GitHub/dashboard-covid-geresa/data" 
+   }
+
+   
+	global main				"$path"
+	global maindata			"$path/maindata"
+	set more off, permanent  
+   
 ********************************************************************************
 
 *** 1. Pasos previos
 
-use "${maindata}/data_dashboard.dta", clear
-drop ubigeo
+use		"${maindata}/data_dashboard.dta", clear
+drop 	ubigeo
 
 ** Quitar acentos a nombres de distritos
 replace distrito = ustrregexra( ustrnormalize( distrito, "nfd" ) , "\p{Mark}", "" )
 
 ** Combinar distritos y ubigeo
-merge m:1 distrito using "${maindata}/ubigeo.dta"
+merge 	m:1 distrito using "${maindata}/ubigeo.dta"
 
 ** Generar diagnosticados en otras regionaes
-gen dis_temp = distrito if ubigeo !=""
-drop distrito
-rename dis_temp distrito
-replace distrito = "OTRO" if distrito == ""
-replace provincia = "OTRO" if provincia == ""
-replace departamento = "OTRO" if departamento == ""
+gen 	dis_temp = distrito if ubigeo !=""
+drop 	distrito
+rename 	dis_temp distrito
+replace	distrito = "OTRO" if distrito == ""
+replace	provincia = "OTRO" if provincia == ""
+replace	departamento = "OTRO" if departamento == ""
 
-replace ubigeo = "999999" if ubigeo == ""
-replace provincia_ubigeo = "9999" if provincia_ubigeo == ""
-replace departamento_ubigeo = "99" if departamento_ubigeo == ""
-format fecha_resultado fecha_inicio fecha_recuperado %tdCCYY-NN-DD
+replace	ubigeo = "999999" if ubigeo == ""
+replace	provincia_ubigeo = "9999" if provincia_ubigeo == ""
+replace	departamento_ubigeo = "99" if departamento_ubigeo == ""
+format	fecha_resultado fecha_inicio fecha_recuperado %tdCCYY-NN-DD
 
 ** Generar variable identificadora/de conteo
 *gen var_id = _n
-gen var_count = 1
+gen 	var_count = 1
 
 ********************************************************************************
 
 *** 2. Generar indicadores de interés ***
 
 *** Indicadores con fecha_resultado
-drop if fecha_resultado < 21986
+drop 	if fecha_resultado < 21986
 
 * 2.1 Casos positivos totales
-gen positivo = 1 if  positivo_molecular == 1 | positivo_rapida == 1 | positivo_antigenica == 1
+gen 	positivo = 1 if  positivo_molecular == 1 | positivo_rapida == 1 | positivo_antigenica == 1
 
 * 2.2 Casos positivos prueba rapida
-replace positivo_rapida =. if positivo_rapida==0
+replace	positivo_rapida =. if positivo_rapida==0
 
 * 2.2 Casos positivos prueba molecular
-replace positivo_molecular =. if positivo_molecular==0
+replace	positivo_molecular =. if positivo_molecular==0
 
 * 2.3 Casos positivos prueba antigenica
-replace positivo_antigenica =. if positivo_antigenica==0
+replace	positivo_antigenica =. if positivo_antigenica==0
 
 * 2.4 Muestras totales
-gen muestra = var_count
+gen 	muestra = var_count
 
 * 2.5 Muestras molecular por día
-gen muestra_molecular = 1 if tipo_prueba == 1
+gen 	muestra_molecular = 1 if tipo_prueba == 1
 
 * 2.6 Muestras rápida por día
-gen muestra_rapida = 1 if tipo_prueba == 2
+gen 	muestra_rapida = 1 if tipo_prueba == 2
 
 * 2.7 Muestras antigenicas por día
-gen muestra_antigenica = 1 if tipo_prueba == 3
+gen 	muestra_antigenica = 1 if tipo_prueba == 3
 
 * 2.8 Recuperados por día
-gen recuperado = 1 if fecha_recuperado !=.
+gen		recuperado = 1 if fecha_recuperado !=.
 
 * 2.9 Sintomáticos por día 
-gen sintomaticos = 1 if sintomatico == 1
+gen		sintomaticos = 1 if sintomatico == 1
 
 * 2.10 Defunciones 
-gen defunciones = 1 if defuncion == 1
+gen		defunciones = 1 if defuncion == 1
 
-tempfile ind
-save "`ind'" // Guardar indicadores si fecha_resultado < 21986
+tempfile 	ind
+save 		"`ind'" // Guardar indicadores si fecha_resultado < 21986
 
 *** Indicadores con fecha inicio
 keep if fecha_inicio >= 21980
 
 * 2.11 Inicio de síntoma
-gen inicio = 1 if positivo == 1 & fecha_inicio !=.
+gen 	inicio = 1 if positivo == 1 & fecha_inicio !=.
 
 * 2.12 Inicio de síntoma molecular
-gen inicio_molecular = 1 if positivo_molecular == 1 & fecha_inicio !=.
+gen 	inicio_molecular = 1 if positivo_molecular == 1 & fecha_inicio !=.
 
 * 2.13 Inicio de síntoma prueba rápida
-gen inicio_rapida = 1 if positivo_molecular == 1 & fecha_inicio !=.
+gen 	inicio_rapida = 1 if positivo_molecular == 1 & fecha_inicio !=.
 
 * 2.13 Inicio de síntoma prueba antigenica
-gen inicio_antigenica = 1 if positivo_antigenica == 1 & fecha_inicio !=.
+gen 	inicio_antigenica = 1 if positivo_antigenica == 1 & fecha_inicio !=.
 
 tempfile ind2
-save "`ind2'" // Guardar indicadores si fecha_inicio >= 21980
+save 	"`ind2'" // Guardar indicadores si fecha_inicio >= 21980
 
 ********************************************************************************
 
