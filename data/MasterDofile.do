@@ -68,7 +68,11 @@
    *
    * ******************************************************************** *
 
-      *do "$source2_siscovid/main.do" 
+   local parte1Do     0
+
+   if (`parte1Do' == 1) { //Change the local above to run or not to run this file
+       do "$source2_siscovid/main.do" 
+   }
 	 
    * ******************************************************************** *
    *
@@ -80,4 +84,12 @@
    *
    * ******************************************************************** *
 
-      do "$source1_camas/main.do" 
+   local parte2Do       1
+
+   if (`parte2Do' == 1) { //Change the local above to run or not to run this file
+       do "$source1_camas/main.do" 
+   }
+ 
+
+	  
+	  
