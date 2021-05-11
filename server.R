@@ -14,12 +14,12 @@ shinyServer(function(input, output, session){
   
     map_district <- read_data_map_district()
     data_dis <- read_data_dis()
-  # Regional (semaforo V2)
   
+  # Regional (semaforo V2)
   data_dpto_r <- reactive({
     data_dpto <- read_data_dpto()
   })
-
+  
   data_dpto_r2 <- reactive({
     data_dpto <- read_data_dpto()
     data_dpto <- filter(data_dpto, fecha > "2021-01-01")
@@ -64,12 +64,14 @@ shinyServer(function(input, output, session){
     data_semaforo_dis <- read_semaforo_dis()
   })
   
+  
   # Camas
   data_beds <- reactive({
     data_camas <- read_data_beds()
   })
   
-  # Provincial (test)
+  
+    # Provincial (test)
   data_corona <- reactive({
     data_res <- read_data_corona()
   })
@@ -277,13 +279,13 @@ shinyServer(function(input, output, session){
   ## Camas
   output$dygraph_region_camas <- renderDygraph({
     
-    dygraph(data_beds()[, .(DateRep, UCI_percent, NOUCI_percent, NIVELII_percent)]) %>%
+    dygraph(data_beds()[, .(fecha, UCI_percent, NOUCI_percent, NIVELII_percent)]) %>%
       dyAxis("x", label = "Fecha") %>%
       dyAxis("y", label = "Porcentaje de ocupación UCI",valueFormatter = JS(valueFormatter_rounded) ) %>%
       dySeries("UCI_percent", label = "% Ocupacion UCI") %>%
       dySeries("NOUCI_percent", label = "% Ocupacion No UCI") %>%
       dySeries("NIVELII_percent", label = "% Ocupacion Nivel II") %>%
-      dyRangeSelector(dateWindow = c(data_beds()[, max(DateRep) - 80], data_beds()[, max(DateRep) + 1]),
+      dyRangeSelector(dateWindow = c(data_beds()[, max(fecha) - 80], data_beds()[, max(fecha) + 1]),
                       fillColor = c("#03045e", "#3a0ca3","#7371fc"), strokeColor = "#03045e") %>%
       dyOptions(useDataTimezone = TRUE, strokeWidth = 2,
                 fillGraph = FALSE, fillAlpha = 0.4,

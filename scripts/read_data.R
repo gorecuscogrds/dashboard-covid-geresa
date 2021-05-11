@@ -60,7 +60,7 @@ read_data_beds <- function() {
   data_beds <- mutate(data_beds, UCI_percent = UCI*100)  
   data_beds <- mutate(data_beds, NOUCI_percent = NOUCI*100)  
   data_beds <- mutate(data_beds, NIVELII_percent = NIVELII*100)  
-  return(data_beds_melt)
+  return(data_beds)
   
 }
 
@@ -74,4 +74,3 @@ read_semaforo <- function() {
 read_semaforo_dis <- function() {
   data_semaforo_dis <- fread("https://raw.githubusercontent.com/gorecuscogrds/dashboard-covid-geresa/main/data/source3_semaforo/traffic_light_distrital.csv")
 }
-

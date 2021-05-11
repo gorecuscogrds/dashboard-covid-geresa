@@ -13,6 +13,9 @@
 import excel		"$source1_camas\input\disponibilidad_camas_hospitalarias.xlsx", sheet("Hoja1") firstrow clear
 
 
+format fecha %tdCCYY-NN-DD
+
+
 *** 2. Renombrar variables
 
 rename NOUCIseconsideralasumade NOUCI
