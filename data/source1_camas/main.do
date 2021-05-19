@@ -18,7 +18,7 @@ format fecha %tdCCYY-NN-DD
 
 *** 2. Renombrar variables
 
-rename NOUCIseconsideralasumade NOUCI
+*rename NOUCIseconsideralasumade NOUCI
 
 *** 2. Exportar data en csv
 

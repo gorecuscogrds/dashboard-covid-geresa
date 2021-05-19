@@ -367,6 +367,7 @@ gen primera_ola_tasamolecular = F188.posi_molecular
 gen segunda_ola_tasamolecular = F286.posi_molecular
 
 * Exportar a CSV
-export delimited using "source2_siscovid/output/data_regional.csv", replace
+export delimited using "$source2_siscovid/output/data_regional.csv", replace
+
 
 ********************************************************************************

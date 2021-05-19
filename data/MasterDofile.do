@@ -34,7 +34,7 @@
    * Brandon Casa				2
 
    *Establecer este valor para el usuario que actualmente usa el script
-   global user  1
+   global user  2
 	
    * Definir Globales
    * ---------------------
@@ -60,7 +60,7 @@
    *
    *		PARTE 1:  GENERAR INDICADORES EPIDEMIOLÓGICOS
    *
-   *		Input:	"$source2_siscovid/input/data_dashboard"
+   *		Input:	"$source2_siscovid/input/data_dashboard.dta"
    *
    *		Output:	"$source2_siscovid/output/data_distrital.csv"
    *				"$source2_siscovid/output/data_provincial.csv"
@@ -68,7 +68,7 @@
    *
    * ******************************************************************** *
 
-   local parte1Do     0
+   local parte1Do     1
 
    if (`parte1Do' == 1) { //Change the local above to run or not to run this file
        do "$source2_siscovid/main.do" 
