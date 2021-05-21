@@ -32,6 +32,8 @@
    *Número de usuario:
    * Brandon Oficina GORE		1
    * Brandon Casa				2
+   * Johar						3
+   * Jason						4
 
    *Establecer este valor para el usuario que actualmente usa el script
    global user  2
@@ -47,6 +49,14 @@
        global path "/Users/bran/Documents/GitHub/dashboard-covid-geresa/data" 
    }
 
+   if $user == 3 {
+       global path "ubicación de carpeta del github (johar)" 
+   }
+
+   if $user == 4 {
+       global path "ubicación de carpeta del github (jason)" 
+   }
+   
    
 	global main					"$path"
 	global source1_camas		"$path/source1_camas"
@@ -67,7 +77,7 @@
    *				"$source2_siscovid/output/data_regional.csv"
    *
    * ******************************************************************** *
-
+ 
    local parte1Do     1
 
    if (`parte1Do' == 1) { //Change the local above to run or not to run this file
@@ -84,7 +94,7 @@
    *
    * ******************************************************************** *
 
-   local parte2Do       1
+   local parte2Do       0
 
    if (`parte2Do' == 1) { //Change the local above to run or not to run this file
        do "$source1_camas/main.do" 
