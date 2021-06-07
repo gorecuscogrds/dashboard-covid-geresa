@@ -14,6 +14,7 @@
 
 *use		"$source2_siscovid/input/data_dashboard.dta", clear
 use "D:\7. Work\covid\data\data_dashboard.dta", clear
+
 drop 	ubigeo
 
 ** Quitar acentos a nombres de distritos
@@ -33,6 +34,7 @@ replace	departamento = "OTRO" if departamento == ""
 replace	ubigeo = "999999" if ubigeo == ""
 replace	provincia_ubigeo = "9999" if provincia_ubigeo == ""
 replace	departamento_ubigeo = "99" if departamento_ubigeo == ""
+
 format	fecha_resultado fecha_inicio fecha_recuperado %tdCCYY-NN-DD
 
 ** Generar variable identificadora/de conteo
