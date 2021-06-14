@@ -12,8 +12,8 @@
 
 *** 1. Pasos previos
 
-*use		"$source2_siscovid/input/data_dashboard.dta", clear
-use "D:\7. Work\covid\data\data_dashboard.dta", clear
+use		"$source2_siscovid/input/data_dashboard.dta", clear
+*use "D:\7. Work\covid\data\data_dashboard.dta", clear
 
 drop 	ubigeo
 
