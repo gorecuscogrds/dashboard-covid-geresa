@@ -59,7 +59,8 @@ read_data_beds <- function() {
   data_beds$fecha <- as.Date(data_beds$fecha)
   data_beds <- mutate(data_beds, UCI_percent = UCI*100)  
   data_beds <- mutate(data_beds, NOUCI_percent = NOUCI*100)  
-  data_beds <- mutate(data_beds, NIVELII_percent = NIVELII*100)  
+  data_beds <- mutate(data_beds, NIVELII_percent = NIVELII*100)
+  data_beds <- mutate(data_beds, UCIN_percent = UCIN*100)
   return(data_beds)
   
 }

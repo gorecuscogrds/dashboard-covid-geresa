@@ -279,12 +279,13 @@ shinyServer(function(input, output, session){
   ## Camas
   output$dygraph_region_camas <- renderDygraph({
     
-    dygraph(data_beds()[, .(fecha, UCI_percent, NOUCI_percent, NIVELII_percent)]) %>%
+    dygraph(data_beds()[, .(fecha, UCI_percent, NOUCI_percent, NIVELII_percent, UCIN_percent)]) %>%
       dyAxis("x", label = "Fecha") %>%
       dyAxis("y", label = "Porcentaje de ocupación UCI",valueFormatter = JS(valueFormatter_rounded) ) %>%
       dySeries("UCI_percent", label = "% Ocupacion UCI") %>%
-      dySeries("NOUCI_percent", label = "% Ocupacion No UCI") %>%
+      dySeries("NOUCI_percent", label = "% Ocupacion No UCI ni UCIN") %>%
       dySeries("NIVELII_percent", label = "% Ocupacion Nivel II") %>%
+      dySeries("UCIN_percent", label = "% Ocupacion UCIN") %>%
       dyRangeSelector(dateWindow = c(data_beds()[, max(fecha) - 80], data_beds()[, max(fecha) + 1]),
                       fillColor = c("#03045e", "#3a0ca3","#7371fc"), strokeColor = "#03045e") %>%
       dyOptions(useDataTimezone = TRUE, strokeWidth = 2,

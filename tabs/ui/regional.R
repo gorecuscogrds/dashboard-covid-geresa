@@ -221,12 +221,14 @@ exponernos al COVID-19, necesitamos cuidarnos y cuidar a los nuestros.
                     tabPanel("Camas",
                              tabsetPanel(
                                tabPanel("Gráfico", dygraphOutput("dygraph_region_camas"),
-                                        h4(strong("Descripción de los ejes")),
+                                        h4(strong("Descripción de los ejes y leyenda")),
                                         p(div(strong("Eje Y: "), em("Total de camas disponibles para COVID-19 (UCI, NO UCI, NIVEL II), en la Región Cusco."), style = "color:blue")),
-                                        p(div(strong("Eje X: "), em("Días."), style = "color:blue"))),
+                                        p(div(strong("Eje X: "), em("Días."), style = "color:blue")),
+                                        p(div(strong("UCI: "), em("Unidad de Cuidado Intensivos."), style = "color:blue")),
+                                        p(div(strong("UCIN: "), em("Unidad de Cuidados Intermedios."), style = "color:blue"))),
                                tabPanel("Resumen", "El semáforo COVID-19 de camas muestra
                                el nivel de riesgo respecto al número total de camas UCI,
-                               NO UCI y camas de Nivel II por COVID-19.", br(), br(),
+                               NO UCI, camas de Nivel II y UCIN por COVID-19.", br(), br(),
 "El color", strong("rojo"), "representa un nivel elevado de riesgo, en esta zona las camas se ocupan
 por sobre el 60%. Hay una alerta máxima por el uso de las mismas en el día a día.
 En todo tiempo deberíamos no exponernos al COVID-19, necesitamos cuidarnos y
