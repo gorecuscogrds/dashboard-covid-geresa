@@ -76,6 +76,11 @@ shinyServer(function(input, output, session){
     data_res <- read_data_corona()
   })
 
+  # Data vacunas
+  data_vacunas_r <- reactive({
+    data_vacunas <- read_data_vacunas()
+  })
+  
   ##### Selectores ----
   
   ## Provincia
@@ -715,6 +720,9 @@ shinyServer(function(input, output, session){
       dyRangeSelector() %>%
       dyOptions(colors = myPal2)
   })
+  
+  
+  
   
   ############################ Código para graficar la data provincial ----
   
