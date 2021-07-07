@@ -67,3 +67,11 @@ read_semaforo_dis <- function() {
   data_semaforo_dis <- fread("https://raw.githubusercontent.com/gorecuscogrds/dashboard-covid-geresa/main/data/semaforo/traffic_light_distrital.csv")
 }
 
+# Data vacunación
+
+read_data_vacunas <- function() {
+  data_vacunas <- fread("https://raw.githubusercontent.com/gorecuscogrds/dashboard-covid-geresa/main/data/source5_vacunas/vacunacion.csv")
+  
+  str(data_vacunas$fecha)
+  data <- xts(x = data_vacunas$vacunados, order.by = data_vacunas$fecha)
+}

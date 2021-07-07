@@ -54,7 +54,7 @@
    }
 
    if $user == 4 {
-       global path "ubicación de carpeta del github (jason)" 
+       global path "C:\Users\PC\Documents\GitHub\dashboard-covid-geresa\data" 
    }
    
    
@@ -101,5 +101,4 @@
    }
  
 
-	  
 	  
