@@ -314,7 +314,7 @@ p(strong("Nota: "), "Se aplicó", em("log10"), "a las curvas para suavizar la se
 "))
                                   ))
                   )
-                )
+                ),
 
                 
                  # fluidRow(
@@ -323,7 +323,28 @@ p(strong("Nota: "), "Se aplicó", em("log10"), "a las curvas para suavizar la se
                  #   
 
 
+# Fila 3
 
+fluidRow(
+  tabBox(title = h4(strong("Vacunacion")),
+         tabPanel("Ritmo",
+                  tabsetPanel(
+                    tabPanel("Gráfico",dygraphOutput("plot6"),
+                             h4(strong("Descripción de los ejes")),
+                             p(div(strong("Eje Y: "), em("Número total de casos positivos, recuperados, sintomáticos, activos y defunciones por COVID-19, en la región."), style = "color:blue")),
+                             p(div(strong("Eje X: "), em("Días."), style = "color:blue"), "El primer día de la serie corresponde al 13/03/2020, fecha en la cual se reportó
+                                          el primer caso confirmado por COVID-19 en la región.", "La información de las ultimas 2 semanas pueden sufrir variación debido que se encuentra en proceso de actualización continua por las unidades notificantes")),
+                    
+                    tabPanel("Resumen","Las curvas de esta gráfica muestran
+                                    la evolución diaria del acumulado de
+                                    casos positivos, recuperados, defunciones, sintomáticos
+                                    y activos, para la Región Cusco.", br(), br(),
+                             "Usted puede elegir apreciar el panorama más amplio (acumulado histórico) o mover el
+deslizador para apreciar la evolución de las curvas acumuladas en los días más próximos a hoy.
+")
+                  ))
+  )
+)
                    
 
 )

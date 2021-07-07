@@ -75,11 +75,17 @@ shinyServer(function(input, output, session){
   data_corona <- reactive({
     data_res <- read_data_corona()
   })
-
+  
+  ############################################################################
+  #############################################################################
+  
   # Data vacunas
   data_vacunas_r <- reactive({
     data_vacunas <- read_data_vacunas()
   })
+  
+  #############################################################################
+  ############################################################################
   
   ##### Selectores ----
   
@@ -148,6 +154,8 @@ shinyServer(function(input, output, session){
     data_trat_dis <- copy(data_semaforo_dis_r()[.(input$dis), on = .(distrito)])
     data_trat_dis
   })
+  
+  
   
   # Colores ----
   
@@ -721,7 +729,16 @@ shinyServer(function(input, output, session){
       dyOptions(colors = myPal2)
   })
   
+  ##############################################################################
+  ##############################################################################
   
+  output$plot6 <- renderDygraph({
+    dygraph(data) %>%
+      dyOptions( drawPoints = TRUE, pointSize = 4 )
+  })
+  
+  ##############################################################################
+  ##############################################################################
   
   
   ############################ Código para graficar la data provincial ----
