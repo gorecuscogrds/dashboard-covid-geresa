@@ -160,7 +160,7 @@ bysort ubigeo: gen total_inicio_antigenica = sum(inicio_antigenica)
 
 gen posi = positivo/muestra
 gen posi_rapida = positivo_rapida/muestra_rapida
-gen posi_molecular = positivo_molecular/muestra_molecular
+gen posi_molecular = positivo_molecular/muestra_molecular if fecha <d(26aug2021)
 gen posi_antigenica = positivo_antigenica/muestra_antigenica
 
 *** Generar primera y segunda ola para variables de interés
@@ -253,7 +253,7 @@ bysort provincia_ubigeo: gen total_inicio_antigenica = sum(inicio_antigenica)
 
 gen posi = positivo/muestra
 gen posi_rapida = positivo_rapida/muestra_rapida
-gen posi_molecular = positivo_molecular/muestra_molecular
+gen posi_molecular = positivo_molecular/muestra_molecular  if fecha <d(26aug2021)
 gen posi_antigenica = positivo_antigenica/muestra_antigenica
 
 *** Generar primera y segunda ola para variables de interés
@@ -349,7 +349,7 @@ gen total_inicio_antigenica = sum(inicio_antigenica)
 
 gen posi = positivo/muestra
 gen posi_rapida = positivo_rapida/muestra_rapida
-gen posi_molecular = positivo_molecular/muestra_molecular
+gen posi_molecular = positivo_molecular/muestra_molecular  if fecha <d(26aug2021)
 gen posi_antigenica = positivo_antigenica/muestra_antigenica
 
 *** Generar primera y segunda ola para variables de interés
