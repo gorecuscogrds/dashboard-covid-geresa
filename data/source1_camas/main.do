@@ -10,7 +10,7 @@
 
 *** 1. Importar data en excel
 
-import excel		"$source1_camas/input/disponibilidad_camas_hospitalarias.xlsx", sheet("Hoja1") firstrow clear
+import excel		"D:\7. Work\covid_cusco\datos\raw\base_ocupacion_camas_hospitalarias.xlsx", sheet("Hoja1") firstrow clear
 
 
 format fecha %tdCCYY-NN-DD
@@ -23,6 +23,8 @@ format fecha %tdCCYY-NN-DD
 *** 2. Exportar data en csv
 
 
-export delimited using "$source1_camas/output/camas.csv", replace
+*export delimited using "$source1_camas/output/camas.csv", replace
+export delimited using "C:\Users\HP\Documents\GitHub\covid-cusco\dashboard-covid-geresa\data\source1_camas\output\camas.csv", replace
+
 clear
 ********************************************************************************
